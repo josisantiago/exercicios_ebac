@@ -5,30 +5,25 @@ Funcionalidade: Tela de cadastro - Checkout
     Quero fazer concluir meu cadastro
     Para finalizar minha compra
 
-    Cenário: Cadastro com dados obrigatórios
-        Dado que estou na página de cadastro
-        Quando eu preencher todos os campos obrigatórios marcados com asteriscos
-        Então devo ser cadastrado com sucesso
+    Contexto: Cliente na página de cadastro da Tela de cadastro - Checkout
+        Dado que estou na tela de cadastroda EBAC-SHOP
 
-     Esquema do Cenário: Tentativa de cadastro com e-mail inválido
-        Dado que estou na página de cadastro
-        Quando eu preencher o campo de e-mail com um formato inválido
-        Então devo ver uma mensagem de erro indicando "Formato de e-mail inválido"
+        Cenário: Cadastro e autenticação do usuário 
+            Quando eu preencher todos os campos obrigatórios marcados com asteriscos
+            Então devo ser cadastrado com sucesso
 
-        Exemplos: 
-            | Nome       | Email               | Senha          |
-            | João Silva | email_invalido.com  | senha_segura   |
-            | Maria Lima | usuario@dominio.com |               |
-            |            | outro@exemplo.com   | senha123       |
+        Esquema do Cenário: Tentativa de cadastro com e-mail inválido
+            Quando eu preencher o campo de e-mail com um formato inválido
+            Então devo ver uma mensagem de erro indicando "Formato de e-mail inválido"
 
-    Esquema do Cenário: Tentativa de cadastro com campos vazios
-        Dado que estou na página de cadastro
-        Quando eu tentar cadastrar com "<campo>" vazio
-        Então devo ver uma mensagem de alerta indicando "Todos os campos obrigatórios devem ser preenchidos"
+            Exemplos:
+            | E-mail               | Mensagem de Erro                 |
+            | email_invalido.com   | Formato de e-mail inválido       |
+            | usuario@dominio      | Formato de e-mail inválido       |
+            | email@dominio..com   | Formato de e-mail inválido       |
+            | email@dominio        |                                  |
+            | @dominio.com         | Formato de e-mail inválido       |
 
-        Exemplos: 
-            | Nome       | Email               | Senha          |
-            |            |                     |                |
-            |            | usuario@dominio.com | senha_segura   |
-            | João Silva |                     | senha123       |
-            | Maria Lima | outro@exemplo.com   |                |
+        Cenário: Tentativa de cadastro com campos vazios
+            Quando eu tentar cadastrar com campos vazios
+            Então devo ver uma mensagem de alerta indicando "Todos os campos obrigatórios devem ser preenchidos"
